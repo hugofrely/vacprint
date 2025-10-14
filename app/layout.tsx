@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VacPrint - VAC Chart Booklet Formatter",
-  description: "Transform your VAC aerodrome charts into perfectly formatted booklets for printing. Fast, private, and print-ready.",
+  title: "VacPrint - Formatage de cartes VAC pour impression",
+  description: "Transformez vos cartes VAC d'aérodrome en livrets parfaitement formatés pour l'impression. Rapide, privé et prêt à imprimer.",
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

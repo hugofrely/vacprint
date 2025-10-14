@@ -88,10 +88,18 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      {/* Skip to main content link for screen readers */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2"
+      >
+        Aller au contenu principal
+      </a>
+
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-6">
+        <header className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-6" aria-hidden="true">
             <FileText className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-5xl font-bold text-gray-900 mb-4">
@@ -100,49 +108,57 @@ export default function Home() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Transformez vos cartes VAC d&apos;aérodrome en livrets parfaitement formatés pour l&apos;impression
           </p>
-        </div>
+        </header>
 
         {/* Converter Tool - At the top */}
-        <div className="max-w-2xl mx-auto mb-20">
+        <section id="main-content" aria-labelledby="converter-title" className="max-w-2xl mx-auto mb-20">
           <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
-            <h2 className="text-2xl font-bold text-center mb-8 text-gray-900">Convertissez vos cartes VAC</h2>
+            <h2 id="converter-title" className="text-2xl font-bold text-center mb-8 text-gray-900">Convertissez vos cartes VAC</h2>
 
             <div className="space-y-6">
               {/* Input Mode Toggle */}
-              <div className="flex gap-2 p-1 bg-gray-100 rounded-xl">
+              <div role="tablist" aria-label="Mode de saisie" className="flex gap-2 p-1 bg-gray-100 rounded-xl">
                 <button
+                  role="tab"
+                  aria-selected={inputMode === 'search'}
+                  aria-controls="search-panel"
+                  id="search-tab"
                   onClick={() => {
                     setInputMode('search');
                     setError(null);
                   }}
-                  className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
+                  className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 ${
                     inputMode === 'search'
                       ? 'bg-white text-blue-600 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
-                  <Search className="w-4 h-4" />
+                  <Search className="w-4 h-4" aria-hidden="true" />
                   Rechercher par code
                 </button>
                 <button
+                  role="tab"
+                  aria-selected={inputMode === 'upload'}
+                  aria-controls="upload-panel"
+                  id="upload-tab"
                   onClick={() => {
                     setInputMode('upload');
                     setError(null);
                   }}
-                  className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
+                  className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 ${
                     inputMode === 'upload'
                       ? 'bg-white text-blue-600 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
-                  <Upload className="w-4 h-4" />
+                  <Upload className="w-4 h-4" aria-hidden="true" />
                   Importer un PDF
                 </button>
               </div>
 
               {/* Search Mode */}
               {inputMode === 'search' ? (
-                <div>
+                <div role="tabpanel" id="search-panel" aria-labelledby="search-tab">
                   <label
                     htmlFor="icao-search"
                     className="block text-sm font-medium text-gray-700 mb-2"
@@ -160,19 +176,21 @@ export default function Home() {
                       }}
                       placeholder="Ex: LFMA, LFMV, LFNH..."
                       maxLength={4}
+                      aria-describedby="icao-help"
+                      aria-invalid={error ? 'true' : 'false'}
                       className="block w-full px-4 py-3 pl-12 border-2 border-gray-300 rounded-xl
-                        focus:border-blue-500 focus:outline-none text-lg font-mono uppercase
+                        focus:border-blue-500 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 text-lg font-mono uppercase
                         placeholder:text-gray-400 placeholder:normal-case placeholder:font-sans"
                     />
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" aria-hidden="true" />
                   </div>
-                  <p className="mt-2 text-sm text-gray-600">
+                  <p id="icao-help" className="mt-2 text-sm text-gray-600">
                     Recherche automatique sur le site du SIA
                   </p>
                 </div>
               ) : (
                 /* Upload Mode */
-                <div>
+                <div role="tabpanel" id="upload-panel" aria-labelledby="upload-tab">
                   <label
                     htmlFor="pdf-upload"
                     className="block text-sm font-medium text-gray-700 mb-2"
@@ -184,24 +202,29 @@ export default function Home() {
                     type="file"
                     accept="application/pdf"
                     onChange={handleFileChange}
+                    aria-describedby="upload-help"
                     className="block w-full text-sm text-gray-500
                       file:mr-4 file:py-3 file:px-6
                       file:rounded-xl file:border-0
                       file:text-sm file:font-semibold
                       file:bg-blue-50 file:text-blue-700
                       hover:file:bg-blue-100
+                      focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2
                       cursor-pointer border-2 border-dashed border-gray-300 rounded-xl p-4
                       hover:border-blue-400 transition-colors"
                   />
+                  <p id="upload-help" className="mt-2 text-sm text-gray-600 sr-only">
+                    Sélectionnez un fichier PDF de carte VAC depuis votre ordinateur
+                  </p>
                 </div>
               )}
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
+              <fieldset>
+                <legend className="block text-sm font-medium text-gray-700 mb-3">
                   Mode d&apos;impression
-                </label>
-                <div className="space-y-3">
-                  <label className={`flex items-start cursor-pointer p-4 rounded-xl border-2 transition-all ${
+                </legend>
+                <div className="space-y-3" role="radiogroup" aria-required="true">
+                  <label className={`flex items-start cursor-pointer p-4 rounded-xl border-2 transition-all focus-within:outline focus-within:outline-3 focus-within:outline-blue-600 focus-within:outline-offset-2 ${
                     mode === 'booklet' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
                   }`}>
                     <input
@@ -211,19 +234,20 @@ export default function Home() {
                       checked={mode === 'booklet'}
                       onChange={(e) => setMode(e.target.value as PrintMode)}
                       className="mt-1 mr-3"
+                      aria-describedby="booklet-desc"
                     />
                     <div className="flex-1">
                       <div className="font-semibold text-gray-900 flex items-center gap-2">
-                        <BookOpen className="w-4 h-4" />
+                        <BookOpen className="w-4 h-4" aria-hidden="true" />
                         Livret complet
                       </div>
-                      <div className="text-sm text-gray-600 mt-1">
+                      <div id="booklet-desc" className="text-sm text-gray-600 mt-1">
                         Imprimer recto-verso, plier → livret avec toutes les pages ordonnées
                       </div>
                     </div>
                   </label>
 
-                  <label className={`flex items-start cursor-pointer p-4 rounded-xl border-2 transition-all ${
+                  <label className={`flex items-start cursor-pointer p-4 rounded-xl border-2 transition-all focus-within:outline focus-within:outline-3 focus-within:outline-blue-600 focus-within:outline-offset-2 ${
                     mode === 'cut' ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 hover:border-gray-300'
                   }`}>
                     <input
@@ -233,24 +257,25 @@ export default function Home() {
                       checked={mode === 'cut'}
                       onChange={(e) => setMode(e.target.value as PrintMode)}
                       className="mt-1 mr-3"
+                      aria-describedby="cut-desc"
                     />
                     <div className="flex-1">
                       <div className="font-semibold text-gray-900 flex items-center gap-2">
-                        <Scissors className="w-4 h-4" />
+                        <Scissors className="w-4 h-4" aria-hidden="true" />
                         Cartes individuelles (avec découpe)
                       </div>
-                      <div className="text-sm text-gray-600 mt-1">
+                      <div id="cut-desc" className="text-sm text-gray-600 mt-1">
                         Imprimer recto-verso, plier, découper → cartes séparées (recto imprimé, verso vierge)
                       </div>
                     </div>
                   </label>
                 </div>
-              </div>
+              </fieldset>
 
               {/* Error Message */}
               {error && (
-                <div className="text-sm text-red-700 bg-red-50 border border-red-200 p-4 rounded-xl flex items-start gap-3">
-                  <svg className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div role="alert" aria-live="assertive" className="text-sm text-red-700 bg-red-50 border border-red-200 p-4 rounded-xl flex items-start gap-3">
+                  <svg className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <div>{error}</div>
@@ -259,8 +284,8 @@ export default function Home() {
 
               {/* Success Message for Upload */}
               {inputMode === 'upload' && file && (
-                <div className="text-sm text-gray-700 bg-green-50 border border-green-200 p-4 rounded-xl flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-600 flex-shrink-0" />
+                <div role="status" aria-live="polite" className="text-sm text-gray-700 bg-green-50 border border-green-200 p-4 rounded-xl flex items-center gap-3">
+                  <Check className="w-5 h-5 text-green-600 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <div className="font-semibold">Fichier sélectionné :</div>
                     <div className="text-gray-600">{file.name}</div>
@@ -270,8 +295,8 @@ export default function Home() {
 
               {/* Success Message for Search */}
               {inputMode === 'search' && icaoCode && icaoCode.length === 4 && !error && (
-                <div className="text-sm text-gray-700 bg-blue-50 border border-blue-200 p-4 rounded-xl flex items-center gap-3">
-                  <Search className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <div role="status" aria-live="polite" className="text-sm text-gray-700 bg-blue-50 border border-blue-200 p-4 rounded-xl flex items-center gap-3">
+                  <Search className="w-5 h-5 text-blue-600 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <div className="font-semibold">Prêt à rechercher :</div>
                     <div className="text-gray-600">Carte VAC de {icaoCode}</div>
@@ -282,18 +307,21 @@ export default function Home() {
               <button
                 onClick={handleProcess}
                 disabled={(inputMode === 'upload' && !file) || (inputMode === 'search' && !icaoCode) || processing}
+                aria-busy={processing}
+                aria-live="polite"
                 className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700
                   disabled:from-gray-400 disabled:to-gray-400
                   text-white font-semibold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02]
-                  disabled:cursor-not-allowed disabled:transform-none shadow-lg"
+                  disabled:cursor-not-allowed disabled:transform-none shadow-lg
+                  focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2"
               >
                 {processing ? (
                   <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
-                    Traitement en cours...
+                    <span>Traitement en cours...</span>
                   </span>
                 ) : (
                   'Formater pour impression'
@@ -301,7 +329,7 @@ export default function Home() {
               </button>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* How It Works - Moved below */}
         <div className="mb-20">
@@ -539,6 +567,24 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <footer className="mt-20 pb-12 text-center" role="contentinfo">
+          <p className="text-gray-600">
+            Développé par <span className="font-semibold text-gray-900">Hugo Frely</span> avec amour et passion <span aria-label="coeur">❤️</span>
+          </p>
+          <p className="text-gray-500 text-sm mt-2">
+            <a
+              href="https://github.com/hugofrely/vacprint"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 transition-colors focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 rounded"
+              aria-label="Voir le code source sur GitHub (ouverture dans un nouvel onglet)"
+            >
+              Code source sur GitHub
+            </a>
+          </p>
+        </footer>
       </div>
     </main>
   );
