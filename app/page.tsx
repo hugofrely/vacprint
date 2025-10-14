@@ -34,7 +34,7 @@ export default function Home() {
       }
 
       return await response.arrayBuffer();
-    } catch (error) {
+    } catch {
       setError('Erreur lors de la récupération de la carte VAC');
       return null;
     }
@@ -70,7 +70,7 @@ export default function Home() {
 
       const formattedPdf = await formatPDFForBooklet(arrayBuffer, mode);
 
-      const blob = new Blob([formattedPdf], { type: 'application/pdf' });
+      const blob = new Blob([new Uint8Array(formattedPdf)], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -79,8 +79,7 @@ export default function Home() {
         : `vac-${mode}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Erreur lors du traitement:', error);
+    } catch {
       setError('Erreur lors du traitement du PDF');
     } finally {
       setProcessing(false);
@@ -99,7 +98,7 @@ export default function Home() {
             VacPrint
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Transformez vos cartes VAC d'aérodrome en livrets parfaitement formatés pour l'impression
+            Transformez vos cartes VAC d&apos;aérodrome en livrets parfaitement formatés pour l&apos;impression
           </p>
         </div>
 
@@ -148,7 +147,7 @@ export default function Home() {
                     htmlFor="icao-search"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Code OACI de l'aérodrome
+                    Code OACI de l&apos;aérodrome
                   </label>
                   <div className="relative">
                     <input
@@ -199,7 +198,7 @@ export default function Home() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Mode d'impression
+                  Mode d&apos;impression
                 </label>
                 <div className="space-y-3">
                   <label className={`flex items-start cursor-pointer p-4 rounded-xl border-2 transition-all ${
@@ -474,7 +473,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Trouvez votre VAC direct</h3>
               <p className="text-gray-600 leading-relaxed">
-                Tapez LFMA, LFMV ou n'importe quel code, on récupère la carte officielle du SIA automatiquement
+                Tapez LFMA, LFMV ou n&apos;importe quel code, on récupère la carte officielle du SIA automatiquement
               </p>
             </div>
 
@@ -498,7 +497,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Vos PDFs restent chez vous</h3>
               <p className="text-gray-600 leading-relaxed">
-                Tout se passe dans votre navigateur, on n'envoie rien nulle part. Pas besoin de s'inscrire
+                Tout se passe dans votre navigateur, on n&apos;envoie rien nulle part. Pas besoin de s&apos;inscrire
               </p>
             </div>
 
@@ -522,7 +521,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Ultra rapide et gratuit</h3>
               <p className="text-gray-600 leading-relaxed">
-                En 30 secondes c'est prêt. Utilisez autant que vous voulez, c'est gratuit et le restera
+                En 30 secondes c&apos;est prêt. Utilisez autant que vous voulez, c&apos;est gratuit et le restera
               </p>
             </div>
 
@@ -535,7 +534,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Imprimez et partez voler</h3>
               <p className="text-gray-600 leading-relaxed">
-                Le PDF marche avec n'importe quelle imprimante. Recto-verso, pliez, c'est bon
+                Le PDF marche avec n&apos;importe quelle imprimante. Recto-verso, pliez, c&apos;est bon
               </p>
             </div>
           </div>

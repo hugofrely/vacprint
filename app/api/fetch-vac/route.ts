@@ -75,7 +75,7 @@ export async function GET(request: NextRequest) {
           });
         }
       }
-    } catch (error) {
+    } catch {
       // Continue to next date
       continue;
     }
