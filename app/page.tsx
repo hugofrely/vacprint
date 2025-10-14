@@ -97,27 +97,27 @@ export default function Home() {
       </a>
 
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
-        <header className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-6" aria-hidden="true">
-            <FileText className="w-8 h-8 text-white" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-6 sm:pb-8">
+        <header className="text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-blue-600 rounded-2xl mb-4 sm:mb-6" aria-hidden="true">
+            <FileText className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-2">
             VacPrint
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Transformez vos cartes VAC d&apos;aérodrome en livrets parfaitement formatés pour l&apos;impression
           </p>
         </header>
 
         {/* Converter Tool - At the top */}
-        <section id="main-content" aria-labelledby="converter-title" className="max-w-2xl mx-auto mb-20">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
-            <h2 id="converter-title" className="text-2xl font-bold text-center mb-8 text-gray-900">Convertissez vos cartes VAC</h2>
+        <section id="main-content" aria-labelledby="converter-title" className="max-w-2xl mx-auto mb-12 sm:mb-20">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-gray-100">
+            <h2 id="converter-title" className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8 text-gray-900">Convertissez vos cartes VAC</h2>
 
             <div className="space-y-6">
               {/* Input Mode Toggle */}
-              <div role="tablist" aria-label="Mode de saisie" className="flex gap-2 p-1 bg-gray-100 rounded-xl">
+              <div role="tablist" aria-label="Mode de saisie" className="flex gap-1 sm:gap-2 p-1 bg-gray-100 rounded-lg sm:rounded-xl">
                 <button
                   role="tab"
                   aria-selected={inputMode === 'search'}
@@ -127,14 +127,15 @@ export default function Home() {
                     setInputMode('search');
                     setError(null);
                   }}
-                  className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 ${
+                  className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 rounded-lg text-sm sm:text-base font-medium transition-all flex items-center justify-center gap-1 sm:gap-2 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 ${
                     inputMode === 'search'
                       ? 'bg-white text-blue-600 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   <Search className="w-4 h-4" aria-hidden="true" />
-                  Rechercher par code
+                  <span className="hidden xs:inline">Rechercher par code</span>
+                  <span className="xs:hidden">Rechercher</span>
                 </button>
                 <button
                   role="tab"
@@ -145,14 +146,15 @@ export default function Home() {
                     setInputMode('upload');
                     setError(null);
                   }}
-                  className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 ${
+                  className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 rounded-lg text-sm sm:text-base font-medium transition-all flex items-center justify-center gap-1 sm:gap-2 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 ${
                     inputMode === 'upload'
                       ? 'bg-white text-blue-600 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   <Upload className="w-4 h-4" aria-hidden="true" />
-                  Importer un PDF
+                  <span className="hidden xs:inline">Importer un PDF</span>
+                  <span className="xs:hidden">Importer</span>
                 </button>
               </div>
 
@@ -174,17 +176,17 @@ export default function Home() {
                         setIcaoCode(e.target.value.toUpperCase());
                         setError(null);
                       }}
-                      placeholder="Ex: LFMA, LFMV, LFNH..."
+                      placeholder="Ex: LFMA, LFMV..."
                       maxLength={4}
                       aria-describedby="icao-help"
                       aria-invalid={error ? 'true' : 'false'}
-                      className="block w-full px-4 py-3 pl-12 border-2 border-gray-300 rounded-xl
-                        focus:border-blue-500 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 text-lg font-mono uppercase
+                      className="block w-full px-3 sm:px-4 py-2.5 sm:py-3 pl-10 sm:pl-12 border-2 border-gray-300 rounded-lg sm:rounded-xl
+                        focus:border-blue-500 focus:outline focus:outline-3 focus:outline-blue-600 focus:outline-offset-2 text-base sm:text-lg font-mono uppercase
                         placeholder:text-gray-400 placeholder:normal-case placeholder:font-sans"
                     />
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" aria-hidden="true" />
+                    <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400 pointer-events-none" aria-hidden="true" />
                   </div>
-                  <p id="icao-help" className="mt-2 text-sm text-gray-600">
+                  <p id="icao-help" className="mt-2 text-xs sm:text-sm text-gray-600">
                     Recherche automatique sur le site du SIA
                   </p>
                 </div>
@@ -223,8 +225,8 @@ export default function Home() {
                 <legend className="block text-sm font-medium text-gray-700 mb-3">
                   Mode d&apos;impression
                 </legend>
-                <div className="space-y-3" role="radiogroup" aria-required="true">
-                  <label className={`flex items-start cursor-pointer p-4 rounded-xl border-2 transition-all focus-within:outline focus-within:outline-3 focus-within:outline-blue-600 focus-within:outline-offset-2 ${
+                <div className="space-y-2 sm:space-y-3" role="radiogroup" aria-required="true">
+                  <label className={`flex items-start cursor-pointer p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 transition-all focus-within:outline focus-within:outline-3 focus-within:outline-blue-600 focus-within:outline-offset-2 ${
                     mode === 'booklet' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
                   }`}>
                     <input
@@ -233,21 +235,21 @@ export default function Home() {
                       value="booklet"
                       checked={mode === 'booklet'}
                       onChange={(e) => setMode(e.target.value as PrintMode)}
-                      className="mt-1 mr-3"
+                      className="mt-1 mr-2 sm:mr-3"
                       aria-describedby="booklet-desc"
                     />
-                    <div className="flex-1">
-                      <div className="font-semibold text-gray-900 flex items-center gap-2">
-                        <BookOpen className="w-4 h-4" aria-hidden="true" />
-                        Livret complet
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-gray-900 flex items-center gap-2 text-sm sm:text-base">
+                        <BookOpen className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                        <span>Livret complet</span>
                       </div>
-                      <div id="booklet-desc" className="text-sm text-gray-600 mt-1">
-                        Imprimer recto-verso, plier → livret avec toutes les pages ordonnées
+                      <div id="booklet-desc" className="text-xs sm:text-sm text-gray-600 mt-1">
+                        Imprimer recto-verso, plier → livret ordonné
                       </div>
                     </div>
                   </label>
 
-                  <label className={`flex items-start cursor-pointer p-4 rounded-xl border-2 transition-all focus-within:outline focus-within:outline-3 focus-within:outline-blue-600 focus-within:outline-offset-2 ${
+                  <label className={`flex items-start cursor-pointer p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 transition-all focus-within:outline focus-within:outline-3 focus-within:outline-blue-600 focus-within:outline-offset-2 ${
                     mode === 'cut' ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 hover:border-gray-300'
                   }`}>
                     <input
@@ -256,16 +258,16 @@ export default function Home() {
                       value="cut"
                       checked={mode === 'cut'}
                       onChange={(e) => setMode(e.target.value as PrintMode)}
-                      className="mt-1 mr-3"
+                      className="mt-1 mr-2 sm:mr-3"
                       aria-describedby="cut-desc"
                     />
-                    <div className="flex-1">
-                      <div className="font-semibold text-gray-900 flex items-center gap-2">
-                        <Scissors className="w-4 h-4" aria-hidden="true" />
-                        Cartes individuelles (avec découpe)
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-gray-900 flex items-center gap-2 text-sm sm:text-base">
+                        <Scissors className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                        <span>Cartes individuelles</span>
                       </div>
-                      <div id="cut-desc" className="text-sm text-gray-600 mt-1">
-                        Imprimer recto-verso, plier, découper → cartes séparées (recto imprimé, verso vierge)
+                      <div id="cut-desc" className="text-xs sm:text-sm text-gray-600 mt-1">
+                        Imprimer, plier, découper → cartes séparées
                       </div>
                     </div>
                   </label>
@@ -332,79 +334,81 @@ export default function Home() {
         </section>
 
         {/* How It Works - Moved below */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Comment ça fonctionne</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-gray-900 px-4">Comment ça fonctionne</h2>
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto px-4">
             {/* Booklet Mode */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-blue-100 hover:border-blue-300 transition-colors">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                  <BookOpen className="w-6 h-6 text-blue-600" />
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-8 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+              <div className="flex items-center mb-4 sm:mb-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                  <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Mode Livret</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Mode Livret</h3>
               </div>
-              <p className="text-gray-600 mb-6">
+              <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
                 Toutes les pages assemblées pour créer un livret que vous pouvez plier
               </p>
 
               {/* Visual illustration */}
-              <div className="bg-blue-50 rounded-xl p-8 mb-6">
-                <div className="space-y-6">
+              <div className="bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-6 md:p-8 mb-4 sm:mb-6">
+                <div className="space-y-3 sm:space-y-4 md:space-y-6">
                   {/* Page spread visualization */}
-                  <div className="flex items-center justify-center gap-4">
+                  <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 md:gap-4">
                     <div className="relative">
-                      <div className="w-24 h-32 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg shadow-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-2xl">8</span>
+                      <div className="w-12 h-16 sm:w-16 sm:h-20 md:w-24 md:h-32 bg-gradient-to-br from-blue-400 to-blue-500 rounded shadow-lg flex items-center justify-center">
+                        <span className="text-white font-bold text-base sm:text-lg md:text-2xl">8</span>
                       </div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">R</div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-[8px] sm:text-[10px] md:text-xs font-bold">R</div>
                     </div>
                     <div className="relative">
-                      <div className="w-24 h-32 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg shadow-lg flex items-center justify-center border-l-2 border-blue-700">
-                        <span className="text-white font-bold text-2xl">1</span>
+                      <div className="w-12 h-16 sm:w-16 sm:h-20 md:w-24 md:h-32 bg-gradient-to-br from-blue-400 to-blue-500 rounded shadow-lg flex items-center justify-center border-l-2 border-blue-700">
+                        <span className="text-white font-bold text-base sm:text-lg md:text-2xl">1</span>
                       </div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">R</div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-[8px] sm:text-[10px] md:text-xs font-bold">R</div>
                     </div>
-                    <ArrowRight className="w-6 h-6 text-blue-600" />
+                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 text-blue-600 flex-shrink-0" />
                     <div className="relative">
-                      <div className="w-24 h-32 bg-gradient-to-br from-blue-300 to-blue-400 rounded-lg shadow-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-2xl">2</span>
+                      <div className="w-12 h-16 sm:w-16 sm:h-20 md:w-24 md:h-32 bg-gradient-to-br from-blue-300 to-blue-400 rounded shadow-lg flex items-center justify-center">
+                        <span className="text-white font-bold text-base sm:text-lg md:text-2xl">2</span>
                       </div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold">V</div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-indigo-600 rounded-full flex items-center justify-center text-white text-[8px] sm:text-[10px] md:text-xs font-bold">V</div>
                     </div>
                     <div className="relative">
-                      <div className="w-24 h-32 bg-gradient-to-br from-blue-300 to-blue-400 rounded-lg shadow-lg flex items-center justify-center border-l-2 border-blue-600">
-                        <span className="text-white font-bold text-2xl">7</span>
+                      <div className="w-12 h-16 sm:w-16 sm:h-20 md:w-24 md:h-32 bg-gradient-to-br from-blue-300 to-blue-400 rounded shadow-lg flex items-center justify-center border-l-2 border-blue-600">
+                        <span className="text-white font-bold text-base sm:text-lg md:text-2xl">7</span>
                       </div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold">V</div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-indigo-600 rounded-full flex items-center justify-center text-white text-[8px] sm:text-[10px] md:text-xs font-bold">V</div>
                     </div>
                   </div>
 
                   <div className="text-center">
-                    <div className="inline-flex items-center gap-3 text-sm font-medium text-blue-700 bg-blue-100 px-4 py-2 rounded-full">
-                      <span className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">R</span>
-                      Recto
-                      <span className="mx-2">•</span>
-                      <span className="w-5 h-5 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs">V</span>
-                      Verso
+                    <div className="inline-flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium text-blue-700 bg-blue-100 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-600 rounded-full flex items-center justify-center text-white text-[8px] sm:text-xs">R</span>
+                      <span className="hidden xs:inline">Recto</span>
+                      <span className="xs:hidden">R</span>
+                      <span className="mx-1 sm:mx-2">•</span>
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 bg-indigo-600 rounded-full flex items-center justify-center text-white text-[8px] sm:text-xs">V</span>
+                      <span className="hidden xs:inline">Verso</span>
+                      <span className="xs:hidden">V</span>
                     </div>
                   </div>
 
                   {/* Folding illustration */}
-                  <div className="flex items-center justify-center gap-4 pt-4 border-t border-blue-200">
-                    <svg className="w-32 h-24" viewBox="0 0 120 80" fill="none">
+                  <div className="flex items-center justify-center gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-blue-200">
+                    <svg className="w-20 h-16 sm:w-28 sm:h-20 md:w-32 md:h-24" viewBox="0 0 120 80" fill="none">
                       <rect x="10" y="20" width="40" height="40" fill="#93C5FD" stroke="#3B82F6" strokeWidth="2" rx="4"/>
                       <rect x="50" y="20" width="40" height="40" fill="#93C5FD" stroke="#3B82F6" strokeWidth="2" strokeDasharray="4 2" rx="4"/>
                       <line x1="50" y1="15" x2="50" y2="65" stroke="#3B82F6" strokeWidth="2" strokeDasharray="4 2"/>
                       <path d="M 92 40 L 100 35 L 100 45 Z" fill="#3B82F6"/>
                     </svg>
-                    <span className="text-sm font-medium text-blue-700">Pliez ici</span>
+                    <span className="text-xs sm:text-sm font-medium text-blue-700">Pliez ici</span>
                   </div>
                 </div>
               </div>
 
-              <ul className="space-y-3">
+              <ul className="space-y-2 sm:space-y-3">
                 {['Imprimez recto-verso', 'Pliez au milieu', 'Votre livret est prêt !'].map((step, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-700">
+                  <li key={i} className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-gray-700">
                     <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
                       <span className="text-blue-600 font-bold text-sm">{i + 1}</span>
                     </div>
@@ -415,46 +419,46 @@ export default function Home() {
             </div>
 
             {/* Cut Mode */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-indigo-100 hover:border-indigo-300 transition-colors">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mr-4">
-                  <Scissors className="w-6 h-6 text-indigo-600" />
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-8 border-2 border-indigo-100 hover:border-indigo-300 transition-colors">
+              <div className="flex items-center mb-4 sm:mb-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-100 rounded-xl flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                  <Scissors className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Mode Découpe</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Mode Découpe</h3>
               </div>
-              <p className="text-gray-600 mb-6">
+              <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
                 Pages alternées pour créer des cartes individuelles après découpe
               </p>
 
               {/* Visual illustration */}
-              <div className="bg-indigo-50 rounded-xl p-8 mb-6">
-                <div className="space-y-6">
+              <div className="bg-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-6 md:p-8 mb-4 sm:mb-6">
+                <div className="space-y-3 sm:space-y-4 md:space-y-6">
                   {/* Alternating pages visualization */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="w-20 h-28 bg-gray-200 rounded-lg shadow flex items-center justify-center">
-                        <span className="text-gray-400 text-xs">vide</span>
+                  <div className="space-y-2 sm:space-y-3">
+                    <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 md:gap-3">
+                      <div className="w-10 h-16 sm:w-14 sm:h-20 md:w-20 md:h-28 bg-gray-200 rounded shadow flex items-center justify-center">
+                        <span className="text-gray-400 text-[8px] sm:text-[10px] md:text-xs">vide</span>
                       </div>
-                      <div className="w-20 h-28 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-lg shadow-lg flex items-center justify-center border-l-2 border-indigo-700">
-                        <span className="text-white font-bold text-xl">1</span>
+                      <div className="w-10 h-16 sm:w-14 sm:h-20 md:w-20 md:h-28 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded shadow-lg flex items-center justify-center border-l-2 border-indigo-700">
+                        <span className="text-white font-bold text-base sm:text-lg md:text-xl">1</span>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-indigo-400" />
-                      <div className="w-20 h-28 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-lg shadow-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-xl">8</span>
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-indigo-400 flex-shrink-0" />
+                      <div className="w-10 h-16 sm:w-14 sm:h-20 md:w-20 md:h-28 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded shadow-lg flex items-center justify-center">
+                        <span className="text-white font-bold text-base sm:text-lg md:text-xl">8</span>
                       </div>
-                      <div className="w-20 h-28 bg-gray-200 rounded-lg shadow flex items-center justify-center border-l-2 border-gray-400">
-                        <span className="text-gray-400 text-xs">vide</span>
+                      <div className="w-10 h-16 sm:w-14 sm:h-20 md:w-20 md:h-28 bg-gray-200 rounded shadow flex items-center justify-center border-l-2 border-gray-400">
+                        <span className="text-gray-400 text-[8px] sm:text-[10px] md:text-xs">vide</span>
                       </div>
                     </div>
 
-                    <div className="text-center text-xs text-indigo-600 font-medium">
+                    <div className="text-center text-[10px] sm:text-xs text-indigo-600 font-medium">
                       Pages alternées gauche/droite
                     </div>
                   </div>
 
                   {/* Cutting illustration */}
-                  <div className="flex items-center justify-center gap-4 pt-4 border-t border-indigo-200">
-                    <svg className="w-32 h-24" viewBox="0 0 120 80" fill="none">
+                  <div className="flex items-center justify-center gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-indigo-200">
+                    <svg className="w-20 h-16 sm:w-28 sm:h-20 md:w-32 md:h-24" viewBox="0 0 120 80" fill="none">
                       <rect x="10" y="20" width="40" height="40" fill="#C7D2FE" stroke="#818CF8" strokeWidth="2" rx="4"/>
                       <rect x="50" y="20" width="40" height="40" fill="#C7D2FE" stroke="#818CF8" strokeWidth="2" strokeDasharray="4 2" rx="4"/>
                       <line x1="50" y1="15" x2="50" y2="65" stroke="#818CF8" strokeWidth="2" strokeDasharray="4 2"/>
@@ -463,14 +467,14 @@ export default function Home() {
                       <path d="M 45 30 L 50 25 L 55 30" stroke="#818CF8" strokeWidth="2" fill="none"/>
                       <path d="M 45 50 L 50 55 L 55 50" stroke="#818CF8" strokeWidth="2" fill="none"/>
                     </svg>
-                    <Scissors className="w-6 h-6 text-indigo-600" />
+                    <Scissors className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-indigo-600" />
                   </div>
                 </div>
               </div>
 
-              <ul className="space-y-3">
+              <ul className="space-y-2 sm:space-y-3">
                 {['Imprimez recto-verso', 'Pliez au milieu', 'Découpez le long du pli', 'Cartes séparées !'].map((step, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-700">
+                  <li key={i} className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-gray-700">
                     <div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
                       <span className="text-indigo-600 font-bold text-sm">{i + 1}</span>
                     </div>
@@ -484,84 +488,84 @@ export default function Home() {
       </div>
 
       {/* Features Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-blue-50 py-20 border-t border-gray-100">
+      <div className="bg-gradient-to-br from-gray-50 to-blue-50 py-12 sm:py-16 lg:py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Pourquoi VacPrint ?</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">Pourquoi VacPrint ?</h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
               Vos cartes VAC prêtes en 30 secondes pour votre vol
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Feature 1 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
-                <Search className="w-7 h-7 text-white" />
+            <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                <Search className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Trouvez votre VAC direct</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900">Trouvez votre VAC direct</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Tapez LFMA, LFMV ou n&apos;importe quel code, on récupère la carte officielle du SIA automatiquement
               </p>
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
-                <BookOpen className="w-7 h-7 text-white" />
+            <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                <BookOpen className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Faites un vrai livret</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900">Faites un vrai livret</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Imprimez recto-verso, pliez en deux, et vous avez un livret compact et bien organisé
               </p>
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Vos PDFs restent chez vous</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900">Vos PDFs restent chez vous</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Tout se passe dans votre navigateur, on n&apos;envoie rien nulle part. Pas besoin de s&apos;inscrire
               </p>
             </div>
 
             {/* Feature 4 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
-                <Scissors className="w-7 h-7 text-white" />
+            <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                <Scissors className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Ou des cartes à découper</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900">Ou des cartes à découper</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Besoin de cartes séparées pour votre kneeboard ? Le mode découpe fait ça nickel
               </p>
             </div>
 
             {/* Feature 5 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Ultra rapide et gratuit</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900">Ultra rapide et gratuit</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 En 30 secondes c&apos;est prêt. Utilisez autant que vous voulez, c&apos;est gratuit et le restera
               </p>
             </div>
 
             {/* Feature 6 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Imprimez et partez voler</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900">Imprimez et partez voler</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Le PDF marche avec n&apos;importe quelle imprimante. Recto-verso, pliez, c&apos;est bon
               </p>
             </div>
@@ -569,11 +573,11 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <footer className="mt-20 pb-12 text-center" role="contentinfo">
-          <p className="text-gray-600">
+        <footer className="mt-12 sm:mt-16 lg:mt-20 pb-8 sm:pb-12 text-center px-4" role="contentinfo">
+          <p className="text-sm sm:text-base text-gray-600">
             Développé par <span className="font-semibold text-gray-900">Hugo Frely</span> avec amour et passion <span aria-label="coeur">❤️</span>
           </p>
-          <p className="text-gray-500 text-sm mt-2">
+          <p className="text-gray-500 text-xs sm:text-sm mt-2">
             <a
               href="https://github.com/hugofrely/vacprint"
               target="_blank"
