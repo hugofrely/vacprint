@@ -2,6 +2,10 @@
 
 > **Note** : Projet codé à la va-vite pour un besoin personnel. Le code n'est pas parfait, mais ça marche !
 
+## 🚀 Accès direct
+
+Le projet est disponible en ligne sur : **[https://vacprint.fr/](https://vacprint.fr/)**
+
 ## C'est quoi ?
 
 Un petit outil web pour transformer les cartes VAC d'aérodromes en livrets imprimables. Parce que c'est quand même plus pratique d'avoir un livret bien plié qu'une pile de feuilles A4 qui volent partout dans le cockpit.
